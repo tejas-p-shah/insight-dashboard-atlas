@@ -1,8 +1,40 @@
-# Welcome to your Lovable project
+# GIS Census Dashboard
 
-## Project info
+A professional, modern React application for interactive visualization of census data and transportation infrastructure using MapLibre GL JS.
 
-**URL**: https://lovable.dev/projects/ca1bf844-2dac-41f8-9bce-b598ef4b5366
+## Project Overview
+
+This application provides an interactive map dashboard that visualizes:
+- Population census data by tehsil (administrative divisions) with choropleth visualization
+- Metro and railway lines with temporal filtering
+- Station locations with detailed information popups
+- Elevation contours and topographical data
+
+## Key Features
+
+✅ **Interactive MapLibre GL JS Map**
+- Professional styling with light/dark theme support
+- Multiple data layers with toggle controls
+- Clickable popups with demographic and infrastructure data
+- Smooth animations and hover effects
+
+✅ **Professional UI/UX**
+- Collapsible sidebar with layer controls
+- Time slider for filtering transport data by construction year
+- KPI widgets showing real-time statistics
+- Responsive design for desktop and mobile
+
+✅ **Advanced State Management**
+- Redux Toolkit for centralized state management
+- Separate slices for layers, KPIs, and theme
+- TypeScript for type safety
+
+✅ **Modern Tech Stack**
+- React 18 with TypeScript
+- MapLibre GL JS for mapping
+- Redux Toolkit for state management
+- TailwindCSS with custom design system
+- Professional color palette optimized for accessibility
 
 ## How can I edit this code?
 

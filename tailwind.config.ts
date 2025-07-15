@@ -61,6 +61,15 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Custom GIS Colors
+				gis: {
+					'tehsil-low': 'hsl(var(--tehsil-low))',
+					'tehsil-high': 'hsl(var(--tehsil-high))',
+					'metro-line': 'hsl(var(--metro-line))',
+					'railway-line': 'hsl(var(--railway-line))',
+					'metro-station': 'hsl(var(--metro-station))',
+					'railway-station': 'hsl(var(--railway-station))'
 				}
 			},
 			borderRadius: {
