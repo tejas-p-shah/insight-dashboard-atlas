@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Map, NavigationControl, Popup } from 'maplibre-gl';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '../store';
-import { setSelectedTehsil } from '../store/slices/layersSlice';
+import { setSelectedTehsil, setSelectedFeature } from '../store/slices/layersSlice';
 import { setSelectedTehsilKPIs } from '../store/slices/kpisSlice';
 import {
   fetchTehsilsData,
@@ -252,6 +252,7 @@ const MapView: React.FC = () => {
         const properties = feature.properties;
         
         dispatch(setSelectedTehsil(tehsilId));
+        dispatch(setSelectedFeature(feature));
         
         const matchingKPI = tehsilKPIs.find(k => k.id === tehsilId);
         if (matchingKPI) {
@@ -265,16 +266,18 @@ const MapView: React.FC = () => {
     // Metro station click handler
     map.current.on('click', 'metro-stations', (e) => {
       if (e.features && e.features[0]) {
-        const properties = e.features[0].properties;
-        showPopup(e.lngLat, properties, 'metro-station');
+        const feature = e.features[0];
+        dispatch(setSelectedFeature(feature));
+        showPopup(e.lngLat, feature.properties, 'metro-station');
       }
     });
 
     // Railway station click handler
     map.current.on('click', 'railway-stations', (e) => {
       if (e.features && e.features[0]) {
-        const properties = e.features[0].properties;
-        showPopup(e.lngLat, properties, 'railway-station');
+        const feature = e.features[0];
+        dispatch(setSelectedFeature(feature));
+        showPopup(e.lngLat, feature.properties, 'railway-station');
       }
     });
 

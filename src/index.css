@@ -147,6 +147,28 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+/* Glassmorphism utilities */
+.glass {
+  @apply bg-background/60 backdrop-blur-md border border-border/50;
+}
+
+.glass-strong {
+  @apply bg-background/80 backdrop-blur-md border border-border/70;
 }
