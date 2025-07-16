@@ -27,10 +27,11 @@ const LayerGroup: React.FC<LayerGroupProps> = ({ title, category, icon, defaultO
     dispatch(toggleLayer(layerId));
   };
 
-  if (layers.length === 0) return null;
+  // Show the group even if no layers, for debugging/demo purposes
+  // if (layers.length === 0) return null;
 
   return (
-    <div className="bg-background/60 backdrop-blur-md border border-border/50 rounded-xl shadow-md">
+    <div className="bg-background/90 backdrop-blur-md border border-border rounded-xl shadow-lg">
       {/* Group Header */}
       <Button
         variant="ghost"
