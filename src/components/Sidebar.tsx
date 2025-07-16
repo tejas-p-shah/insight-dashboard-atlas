@@ -78,7 +78,7 @@ const Sidebar: React.FC = () => {
             </div>
 
             {/* Theme Toggle */}
-            <div className="mb-6 bg-background/60 backdrop-blur-md border border-border/50 rounded-xl shadow-md p-4">
+            <div className="mb-6 bg-background/90 backdrop-blur-md border border-border rounded-xl shadow-lg p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm font-medium">
                   {isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
