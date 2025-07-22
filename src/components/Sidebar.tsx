@@ -7,7 +7,8 @@ import { Separator } from './ui/separator';
 import type { RootState } from '../store';
 import { toggleTheme } from '../store/slices/themeSlice';
 import LayerGroup from './LayerGroup';
-import Legend from './Legend';
+import GeoJSONUpload from './GeoJSONUpload';
+import { addUploadedLayer, removeUploadedLayer, toggleUploadedLayer } from '../store/slices/layersSlice';
 
 const Sidebar: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -15,6 +16,7 @@ const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
   
   const { isDark } = useSelector((state: RootState) => state.theme);
+  const { uploadedLayers } = useSelector((state: RootState) => state.layers);
 
   const handleThemeToggle = () => {
     dispatch(toggleTheme());
@@ -22,6 +24,18 @@ const Sidebar: React.FC = () => {
 
   const toggleMobile = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleLayerAdd = (layer: any) => {
+    dispatch(addUploadedLayer(layer));
+  };
+
+  const handleLayerToggle = (id: string) => {
+    dispatch(toggleUploadedLayer(id));
+  };
+
+  const handleLayerRemove = (id: string) => {
+    dispatch(removeUploadedLayer(id));
   };
 
   return (
@@ -125,8 +139,13 @@ const Sidebar: React.FC = () => {
 
             <Separator className="my-4" />
 
-            {/* Legend */}
-            <Legend />
+            {/* GeoJSON Upload */}
+            <GeoJSONUpload 
+              onLayerAdd={handleLayerAdd}
+              onLayerToggle={handleLayerToggle}
+              onLayerRemove={handleLayerRemove}
+              uploadedLayers={uploadedLayers}
+            />
           </div>
         </div>
 

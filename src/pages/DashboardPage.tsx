@@ -4,6 +4,8 @@ import MapView from '../components/MapView';
 import Sidebar from '../components/Sidebar';
 import TopBar from '../components/TopBar';
 import KPIDrawer from '../components/KPIDrawer';
+import SDGBar from '../components/SDGBar';
+import RightPanel from '../components/RightPanel';
 import type { RootState } from '../store';
 
 const DashboardPage: React.FC = () => {
@@ -34,7 +36,13 @@ const DashboardPage: React.FC = () => {
         
         {/* KPI Drawer */}
         <KPIDrawer />
+        
+        {/* SDG Bar */}
+        <SDGBar />
       </div>
+      
+      {/* Right Panel */}
+      <RightPanel />
     </div>
   );
 };

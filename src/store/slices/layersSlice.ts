@@ -20,6 +20,8 @@ interface LayersState {
     current: number;
   };
   searchQuery: string;
+  selectedSDG: number | null;
+  uploadedLayers: any[];
 }
 
 const initialState: LayersState = {
@@ -135,6 +137,8 @@ const initialState: LayersState = {
     current: 2024,
   },
   searchQuery: '',
+  selectedSDG: null,
+  uploadedLayers: [],
 };
 
 const layersSlice = createSlice({
@@ -168,6 +172,21 @@ const layersSlice = createSlice({
     setSearchQuery: (state, action: PayloadAction<string>) => {
       state.searchQuery = action.payload;
     },
+    setSelectedSDG: (state, action: PayloadAction<number | null>) => {
+      state.selectedSDG = action.payload;
+    },
+    addUploadedLayer: (state, action: PayloadAction<any>) => {
+      state.uploadedLayers.push(action.payload);
+    },
+    removeUploadedLayer: (state, action: PayloadAction<string>) => {
+      state.uploadedLayers = state.uploadedLayers.filter(layer => layer.id !== action.payload);
+    },
+    toggleUploadedLayer: (state, action: PayloadAction<string>) => {
+      const layer = state.uploadedLayers.find(layer => layer.id === action.payload);
+      if (layer) {
+        layer.visible = !layer.visible;
+      }
+    },
   },
 });
 
@@ -178,6 +197,10 @@ export const {
   setTimeRange, 
   setSelectedFeature, 
   setActiveKpiPanel, 
-  setSearchQuery 
+  setSearchQuery,
+  setSelectedSDG,
+  addUploadedLayer,
+  removeUploadedLayer,
+  toggleUploadedLayer,
 } = layersSlice.actions;
 export default layersSlice.reducer;

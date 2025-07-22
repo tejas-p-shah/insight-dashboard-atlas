@@ -172,3 +172,12 @@ All colors MUST be HSL.
 .glass-strong {
   @apply bg-background/80 backdrop-blur-md border border-border/70;
 }
+
+/* Hide scrollbar for webkit browsers */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
