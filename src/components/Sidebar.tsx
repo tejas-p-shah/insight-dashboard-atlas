@@ -73,9 +73,9 @@ const Sidebar: React.FC = () => {
           variant="ghost"
           size="sm"
           onClick={() => setCollapsed(!collapsed)}
-          className="absolute -right-3 top-6 z-10 rounded-full bg-background/80 backdrop-blur-md border border-border/50 shadow-md w-6 h-6 p-0 hidden lg:flex"
+          className="absolute -right-3 top-6 z-10 rounded-full bg-background border border-border shadow-md w-8 h-8 p-0 hidden lg:flex items-center justify-center hover:bg-accent"
         >
-          {collapsed ? <ChevronRight className="h-3 w-3" /> : <ChevronLeft className="h-3 w-3" />}
+          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
         </Button>
 
         {/* Sidebar Content */}

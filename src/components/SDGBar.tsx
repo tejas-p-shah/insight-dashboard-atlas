@@ -9,20 +9,20 @@ import { setSelectedSDG } from '../store/slices/layersSlice';
 const SDG_DATA = [
   { id: 1, name: "No Poverty", color: "#E5243B", icon: "🏠" },
   { id: 2, name: "Zero Hunger", color: "#DDA63A", icon: "🌾" },
-  { id: 3, name: "Good Health and Well-being", color: "#4C9F38", icon: "🏥" },
-  { id: 4, name: "Quality Education", color: "#C5192D", icon: "🎓" },
+  { id: 3, name: "Good Health and Well-being", color: "#4C9F38", icon: "❤️" },
+  { id: 4, name: "Quality Education", color: "#C5192D", icon: "📚" },
   { id: 5, name: "Gender Equality", color: "#FF3A21", icon: "⚖️" },
   { id: 6, name: "Clean Water and Sanitation", color: "#26BDE2", icon: "💧" },
   { id: 7, name: "Affordable and Clean Energy", color: "#FCC30B", icon: "⚡" },
   { id: 8, name: "Decent Work and Economic Growth", color: "#A21942", icon: "💼" },
   { id: 9, name: "Industry, Innovation and Infrastructure", color: "#FD6925", icon: "🏗️" },
-  { id: 10, name: "Reduced Inequalities", color: "#DD1367", icon: "📊" },
-  { id: 11, name: "Sustainable Cities and Communities", color: "#FD9D24", icon: "🏙️" },
+  { id: 10, name: "Reduced Inequalities", color: "#DD1367", icon: "=" },
+  { id: 11, name: "Sustainable Cities and Communities", color: "#FD9D24", icon: "🏘️" },
   { id: 12, name: "Responsible Consumption and Production", color: "#BF8B2E", icon: "♻️" },
   { id: 13, name: "Climate Action", color: "#3F7E44", icon: "🌍" },
   { id: 14, name: "Life Below Water", color: "#0A97D9", icon: "🐠" },
   { id: 15, name: "Life on Land", color: "#56C02B", icon: "🌳" },
-  { id: 16, name: "Peace, Justice and Strong Institutions", color: "#00689D", icon: "⚖️" },
+  { id: 16, name: "Peace, Justice and Strong Institutions", color: "#00689D", icon: "🕊️" },
   { id: 17, name: "Partnerships for the Goals", color: "#19486A", icon: "🤝" },
 ];
 
@@ -72,11 +72,11 @@ const SDGBar: React.FC = () => {
                     )}
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent side="top" className="max-w-xs">
-                  <div className="text-center">
+                <TooltipContent side="top" className="max-w-xs bg-background/95 backdrop-blur-md border shadow-lg">
+                  <div className="text-center p-2">
                     <div className="text-lg mb-1">{sdg.icon}</div>
-                    <div className="font-medium">SDG {sdg.id}</div>
-                    <div className="text-xs text-muted-foreground">{sdg.name}</div>
+                    <div className="font-medium text-foreground">SDG {sdg.id}</div>
+                    <div className="text-sm font-medium text-primary">{sdg.name}</div>
                   </div>
                 </TooltipContent>
               </Tooltip>
