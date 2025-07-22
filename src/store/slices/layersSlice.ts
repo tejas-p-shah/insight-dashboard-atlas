@@ -190,6 +190,7 @@ const layersSlice = createSlice({
   },
 });
 
+// Export all actions
 export const { 
   toggleLayer, 
   setLayerVisibility, 
@@ -203,4 +204,6 @@ export const {
   removeUploadedLayer,
   toggleUploadedLayer,
 } = layersSlice.actions;
+
+// Export reducer as default
 export default layersSlice.reducer;
