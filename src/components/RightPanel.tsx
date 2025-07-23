@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Separator } from './ui/separator';
 import Legend from './Legend';
-import DataSummary from './DataSummary';
 import AnalyticalWidgets from './AnalyticalWidgets';
+import SDGAnalytics from './SDGAnalytics';
+import type { RootState } from '../store';
 
 const RightPanel: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const selectedSDG = useSelector((state: RootState) => state.layers.selectedSDG);
 
   return (
     <div className={`fixed right-0 top-0 h-full z-40 transition-all duration-300 ${
@@ -30,20 +33,24 @@ const RightPanel: React.FC = () => {
       }`}>
         <Card className="h-full rounded-none glass border-l border-r-0 border-t-0 border-b-0">
           <div className="h-full overflow-y-auto p-4 space-y-4">
-            <h2 className="text-lg font-semibold">Data Insights</h2>
+            <h2 className="text-lg font-semibold">
+              {selectedSDG ? 'SDG Analytics' : 'Data Insights'}
+            </h2>
             
-            {/* Data Summary */}
-            <DataSummary />
-            
-            <Separator />
-            
-            {/* Analytical Widgets */}
-            <AnalyticalWidgets />
-            
-            <Separator />
-            
-            {/* Legend moved here */}
-            <Legend />
+            {/* SDG Analytics (when SDG is selected) or General Analytics */}
+            {selectedSDG ? (
+              <SDGAnalytics />
+            ) : (
+              <>
+                {/* Analytical Widgets */}
+                <AnalyticalWidgets />
+                
+                <Separator />
+                
+                {/* Legend moved here */}
+                <Legend />
+              </>
+            )}
           </div>
         </Card>
       </div>

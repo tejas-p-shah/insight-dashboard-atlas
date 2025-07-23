@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import MapView from '../components/MapView';
 import Sidebar from '../components/Sidebar';
-import TopBar from '../components/TopBar';
 import KPIDrawer from '../components/KPIDrawer';
 import SDGBar from '../components/SDGBar';
 import RightPanel from '../components/RightPanel';
@@ -26,10 +25,7 @@ const DashboardPage: React.FC = () => {
       
       {/* Main Content */}
       <div className="flex-1 flex flex-col overflow-hidden relative">
-        {/* Top Bar */}
-        <TopBar />
-        
-        {/* Map Container */}
+        {/* Map Container - Full Height */}
         <div className="flex-1 relative">
           <MapView />
         </div>

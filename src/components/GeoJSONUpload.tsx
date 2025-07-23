@@ -20,6 +20,7 @@ interface GeoJSONUploadProps {
   onLayerToggle: (id: string) => void;
   onLayerRemove: (id: string) => void;
   uploadedLayers: UploadedLayer[];
+  compact?: boolean;
 }
 
 const generateRandomColor = () => {
@@ -34,7 +35,8 @@ const GeoJSONUpload: React.FC<GeoJSONUploadProps> = ({
   onLayerAdd,
   onLayerToggle,
   onLayerRemove,
-  uploadedLayers
+  uploadedLayers,
+  compact = false
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragOver, setDragOver] = useState(false);
@@ -95,6 +97,86 @@ const GeoJSONUpload: React.FC<GeoJSONUploadProps> = ({
       description: "Layer renaming will be implemented in the next update.",
     });
   };
+
+  if (compact) {
+    return (
+      <Card className="glass">
+        <CardContent className="p-3">
+          <div className="space-y-3">
+            <h3 className="text-sm font-medium flex items-center gap-2">
+              <Upload className="h-4 w-4" />
+              Upload GeoJSON
+            </h3>
+            
+            {/* Compact Upload Area */}
+            <div
+              className={`border-2 border-dashed rounded-lg p-3 text-center transition-colors cursor-pointer ${
+                dragOver 
+                  ? 'border-primary bg-primary/10' 
+                  : 'border-border hover:border-primary/50'
+              }`}
+              onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
+              onDragLeave={() => setDragOver(false)}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <Upload className="h-6 w-6 mx-auto mb-1 text-muted-foreground" />
+              <p className="text-xs text-muted-foreground">
+                Drop files or click to browse
+              </p>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".geojson,application/geo+json"
+                multiple
+                className="hidden"
+                onChange={(e) => handleFileSelect(e.target.files)}
+              />
+            </div>
+
+            {/* Compact Layers List */}
+            {uploadedLayers.length > 0 && (
+              <div className="space-y-1">
+                {uploadedLayers.map((layer) => (
+                  <div
+                    key={layer.id}
+                    className="flex items-center gap-1 p-1 rounded bg-background/30"
+                  >
+                    <div
+                      className="w-2 h-2 rounded-full border"
+                      style={{ backgroundColor: layer.color }}
+                    />
+                    <span className="text-xs text-foreground truncate flex-1">
+                      {layer.name}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-4 w-4 p-0"
+                      onClick={() => onLayerToggle(layer.id)}
+                    >
+                      {layer.visible ? 
+                        <Eye className="h-3 w-3" /> : 
+                        <EyeOff className="h-3 w-3" />
+                      }
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-4 w-4 p-0 text-destructive"
+                      onClick={() => onLayerRemove(layer.id)}
+                    >
+                      <X className="h-2 w-2" />
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Card className="glass">

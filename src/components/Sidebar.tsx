@@ -8,6 +8,7 @@ import type { RootState } from '../store';
 import { toggleTheme } from '../store/slices/themeSlice';
 import LayerGroup from './LayerGroup';
 import GeoJSONUpload from './GeoJSONUpload';
+import DataSummary from './DataSummary';
 import { addUploadedLayer, removeUploadedLayer, toggleUploadedLayer } from '../store/slices/layersSlice';
 
 const Sidebar: React.FC = () => {
@@ -92,7 +93,7 @@ const Sidebar: React.FC = () => {
             </div>
 
             {/* Theme Toggle */}
-            <div className="mb-6 bg-background/90 backdrop-blur-md border border-border rounded-xl shadow-lg p-4">
+            <div className="mb-4 bg-background/90 backdrop-blur-md border border-border rounded-xl shadow-lg p-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2 text-sm font-medium">
                   {isDark ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
@@ -105,8 +106,19 @@ const Sidebar: React.FC = () => {
               </div>
             </div>
 
+            {/* Compact GeoJSON Upload */}
+            <div className="mb-4">
+              <GeoJSONUpload 
+                onLayerAdd={handleLayerAdd}
+                onLayerToggle={handleLayerToggle}
+                onLayerRemove={handleLayerRemove}
+                uploadedLayers={uploadedLayers}
+                compact={true}
+              />
+            </div>
+
             {/* Layer Groups */}
-            <div className="flex-1 overflow-y-auto space-y-4">
+            <div className="flex-1 overflow-y-auto space-y-4 mb-4">
               <LayerGroup 
                 title="Administrative" 
                 category="administrative" 
@@ -139,13 +151,8 @@ const Sidebar: React.FC = () => {
 
             <Separator className="my-4" />
 
-            {/* GeoJSON Upload */}
-            <GeoJSONUpload 
-              onLayerAdd={handleLayerAdd}
-              onLayerToggle={handleLayerToggle}
-              onLayerRemove={handleLayerRemove}
-              uploadedLayers={uploadedLayers}
-            />
+            {/* Data Summary - Moved from Right Panel */}
+            <DataSummary collapsible={true} />
           </div>
         </div>
 
